@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Peta Konsep Pertemuan 1 | FLIPTACK</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.55), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.45), transparent 25%),
+        linear-gradient(135deg, #f8dce8, #f4c8da, #f9e6ef);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px 100px;
+
+    overflow-x: hidden;
+}
+
+/* =========================
+   DEKORASI BACKGROUND
+========================= */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+
+    border-radius: 50%;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+body::before {
+    width: 180px;
+    height: 180px;
+
+    background: rgba(255,255,255,.25);
+
+    top: 5%;
+    left: -70px;
+}
+
+body::after {
+    width: 220px;
+    height: 220px;
+
+    background: rgba(255,255,255,.20);
+
+    bottom: 5%;
+    right: -90px;
+}
+
+/* =========================
+   BOOK CONTAINER
+========================= */
+
+.book-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(100%, 1024px);
+
+    height: min(91vh, 950px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    perspective: 1500px;
+}
+
+/* =========================
+   BOOK PAGE
+========================= */
+
+.book-page {
+    position: relative;
+
+    height: 100%;
+
+    aspect-ratio: 1024 / 1536;
+
+    background: #fff;
+
+    border-radius: 10px 18px 18px 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 55px rgba(116, 54, 85, .22),
+        8px 8px 0 rgba(255,255,255,.45),
+        12px 12px 0 rgba(225,170,194,.35);
+
+    transform:
+        rotateY(-3deg)
+        rotateX(1deg);
+
+    animation: pageOpen .9s ease forwards;
+}
+
+/* Efek sisi halaman */
+
+.book-page::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 14px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(160,110,130,.18),
+            rgba(255,255,255,.75),
+            rgba(210,170,190,.15)
+        );
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+/* Efek cahaya pada halaman */
+
+.book-page::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,.18),
+            transparent 35%,
+            rgba(255,255,255,.08)
+        );
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+/* =========================
+   GAMBAR PETA KONSEP
+========================= */
+
+.concept-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+/* =========================
+   ANIMASI BUKU
+========================= */
+
+@keyframes pageOpen {
+
+    from {
+        opacity: 0;
+
+        transform:
+            rotateY(-12deg)
+            rotateX(3deg)
+            scale(.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            rotateY(-3deg)
+            rotateX(1deg)
+            scale(1);
+    }
+}
+
+/* =========================
+   NOMOR HALAMAN
+========================= */
+
+.page-number {
+    position: fixed;
+
+    bottom: 24px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    background: rgba(255,255,255,.95);
+
+    color: #a84d78;
+
+    padding: 9px 22px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    box-shadow:
+        0 8px 22px rgba(126,65,91,.18);
+}
+
+/* =========================
+   NAVIGASI BAWAH
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 18px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    z-index: 15;
+
+    pointer-events: none;
+}
+
+.bottom-nav a {
+    pointer-events: auto;
+
+    text-decoration: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 18px 10px 10px;
+
+    border-radius: 40px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: .25s ease;
+}
+
+/* =========================
+   TOMBOL KEMBALI
+========================= */
+
+.back-button {
+    background: rgba(255,255,255,.96);
+
+    color: #9b4b72;
+
+    box-shadow:
+        0 8px 25px rgba(126,65,91,.18);
+}
+
+.back-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f5d1df;
+
+    color: #934669;
+
+    font-size: 18px;
+}
+
+/* =========================
+   TOMBOL LANJUT
+========================= */
+
+.next-button {
+    background:
+        linear-gradient(
+            135deg,
+            #d978a3,
+            #b95583
+        );
+
+    color: white;
+
+    padding: 10px 10px 10px 20px !important;
+
+    box-shadow:
+        0 8px 25px rgba(157,68,108,.25);
+}
+
+.next-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.20);
+
+    font-size: 18px;
+}
+
+/* Hover */
+
+.back-button:hover,
+.next-button:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px 15px 90px;
+    }
+
+    .book-container {
+        height: 86vh;
+    }
+
+    .bottom-nav {
+        padding: 0 15px;
+    }
+
+    .bottom-nav a {
+        font-size: 12px;
+    }
+}
+
+/* =========================
+   HP
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px 10px 85px;
+    }
+
+    .book-container {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .book-page {
+        width: 100%;
+        height: auto;
+
+        aspect-ratio: 1024 / 1536;
+    }
+
+    .bottom-nav {
+        bottom: 12px;
+
+        padding: 0 10px;
+    }
+
+    .bottom-nav a {
+        padding: 8px 12px 8px 8px;
+
+        font-size: 11px;
+    }
+
+    .next-button {
+        padding: 8px 8px 8px 12px !important;
+    }
+
+    .back-icon,
+    .next-icon {
+        width: 30px;
+        height: 30px;
+
+        font-size: 16px;
+    }
+
+    .page-number {
+        bottom: 15px;
+
+        padding: 7px 15px;
+
+        font-size: 10px;
+    }
+}
+
+/* =========================
+   HP KECIL
+========================= */
+
+@media (max-width: 400px) {
+
+    .book-container {
+        height: 76vh;
+    }
+
+    .bottom-nav a {
+        font-size: 10px;
+    }
+
+    .bottom-nav a span:not(.back-icon):not(.next-icon) {
+        max-width: 90px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HALAMAN PETA KONSEP
+========================= -->
+
+<div class="book-container">
+
+    <div class="book-page">
+
+        <img
+            src="peta-konsep-p1.png"
+            alt="Peta Konsep Pertemuan 1 FLIPTACK"
+            class="concept-image"
+        >
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NOMOR HALAMAN
+========================= -->
+
+<div class="page-number">
+    PETA KONSEP • PERTEMUAN 1
+</div>
+
+
+<!-- =========================
+     NAVIGASI
+========================= -->
+
+<div class="bottom-nav">
+
+    <!-- KEMBALI KE COVER -->
+    <a
+        href="cover-p1.html"
+        class="back-button"
+        aria-label="Kembali ke Cover Pertemuan 1"
+    >
+        <span class="back-icon">←</span>
+        <span>Cover Pertemuan 1</span>
+    </a>
+
+
+    <!-- MULAI PERTEMUAN -->
+    <a
+        href="kegiatanbelajar1.html"
+        class="next-button"
+        aria-label="Mulai Pertemuan 1"
+    >
+        <span>Mulai Pertemuan 1</span>
+        <span class="next-icon">→</span>
+    </a>
+
+</div>
+
+</body>
+</html>
