@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Evaluasi Akhir | FLIPTACK</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left,#ffd9e8 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#f7c7da 0%,transparent 35%),
+        #fff4f8;
+    min-height:100vh;
+    color:#5d3a49;
+    padding:25px 15px;
+}
+
+/* ===== BOOK ===== */
+.book{
+    max-width:1000px;
+    margin:auto;
+    background:linear-gradient(135deg,#fff,#fff7fa);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(185,93,130,.18);
+    position:relative;
+}
+
+.book::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:8px;
+    background:linear-gradient(#e99ab8,#f6c5d8,#e99ab8);
+}
+
+/* ===== HEADER ===== */
+.header{
+    text-align:center;
+    padding:35px 25px 30px;
+    background:linear-gradient(135deg,#fde2ec,#fff4f8);
+    border-bottom:1px solid #f3d1df;
+}
+
+.brand{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    color:#b35b7e;
+    margin-bottom:14px;
+}
+
+.badge{
+    display:inline-block;
+    background:#d9789d;
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-family:Georgia,serif;
+    font-size:38px;
+    color:#7c3f58;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+    font-size:15px;
+    color:#79596a;
+}
+
+/* ===== CONTENT ===== */
+.content{
+    padding:30px;
+}
+
+.info-card{
+    background:linear-gradient(135deg,#fff5f9,#ffeaf2);
+    border:1px solid #f3d1df;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.info-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:19px;
+    font-weight:700;
+    color:#8b4563;
+    margin-bottom:10px;
+}
+
+.info-card p{
+    line-height:1.7;
+    font-size:14px;
+    color:#765768;
+}
+
+/* ===== EVALUATION CARD ===== */
+.evaluation-card{
+    background:#fff;
+    border:1px solid #f1d5e1;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(185,93,130,.08);
+}
+
+.evaluation-title{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.evaluation-title h2{
+    font-family:Georgia,serif;
+    color:#7c3f58;
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.evaluation-title p{
+    color:#806171;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ===== FORM ===== */
+.form-wrapper{
+    width:100%;
+    height:700px;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #efd3df;
+    background:#fff;
+}
+
+.form-wrapper iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* ===== FINISH ===== */
+.finish{
+    margin-top:25px;
+    padding:25px 20px;
+    border-radius:18px;
+    background:#fff5f9;
+    border:1px solid #f1d3df;
+    text-align:center;
+}
+
+.finish p{
+    font-size:14px;
+    line-height:1.7;
+    color:#755567;
+    margin-bottom:18px;
+}
+
+.finish-button{
+    display:inline-block;
+    border:none;
+    cursor:pointer;
+    padding:12px 25px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#d9789d,#c85f88);
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    box-shadow:0 6px 15px rgba(185,93,130,.20);
+    transition:.3s;
+}
+
+.finish-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(185,93,130,.28);
+}
+
+/* ===== NAVIGATION ===== */
+.navigation{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:25px 30px 30px;
+    border-top:1px solid #f1d7e2;
+    margin-top:10px;
+}
+
+.nav-btn{
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-back{
+    background:#f8e4ec;
+    color:#8b4d67;
+}
+
+.nav-home{
+    background:#d9789d;
+    color:white;
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(185,93,130,.18);
+}
+
+.page-label{
+    font-size:12px;
+    font-weight:700;
+    color:#b56b87;
+    letter-spacing:1px;
+}
+
+/* ===== POPUP ===== */
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(76,35,53,.45);
+    backdrop-filter:blur(5px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:9999;
+}
+
+.popup-overlay.show{
+    display:flex;
+}
+
+.popup{
+    width:100%;
+    max-width:650px;
+    background:#fff;
+    border-radius:28px;
+    padding:35px 30px 30px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(100,45,70,.30);
+    animation:popupShow .35s ease;
+}
+
+@keyframes popupShow{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.popup-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#f5bfd3,#e99ab8);
+    font-size:35px;
+}
+
+.popup h2{
+    font-family:Georgia,serif;
+    color:#7c3f58;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.popup p{
+    color:#765768;
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:10px;
+}
+
+.popup-question{
+    margin-top:18px;
+    font-weight:700;
+    color:#8b4563 !important;
+}
+
+.popup-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.popup-btn{
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.popup-menu{
+    background:#f8e4ec;
+    color:#8b4d67;
+}
+
+.popup-home{
+    background:#d9789d;
+    color:white;
+}
+
+.popup-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:700px){
+
+    body{
+        padding:12px 8px;
+    }
+
+    .book{
+        border-radius:20px;
+    }
+
+    .header{
+        padding:28px 18px 25px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    .subtitle{
+        font-size:14px;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .info-card,
+    .evaluation-card{
+        padding:18px;
+    }
+
+    .evaluation-title h2{
+        font-size:22px;
+    }
+
+    .form-wrapper{
+        height:650px;
+    }
+
+    .navigation{
+        padding:20px 18px 25px;
+    }
+
+    .nav-btn{
+        padding:10px 14px;
+        font-size:12px;
+    }
+
+    .page-label{
+        font-size:10px;
+    }
+
+    .popup{
+        padding:30px 20px 25px;
+        border-radius:23px;
+    }
+
+    .popup h2{
+        font-size:24px;
+    }
+
+    .popup-icon{
+        width:65px;
+        height:65px;
+        font-size:30px;
+    }
+
+    .popup-btn{
+        width:100%;
+        max-width:260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="brand">
+            FLIPTACK • E-MODUL BERBASIS TPACK
+        </div>
+
+        <div class="badge">
+            EVALUASI AKHIR
+        </div>
+
+        <h1>Evaluasi Akhir</h1>
+
+        <p class="subtitle">
+            Yuk, uji kembali pemahamanmu setelah menyelesaikan seluruh rangkaian pembelajaran FLIPTACK.
+        </p>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <!-- INFO -->
+        <div class="info-card">
+
+            <div class="info-title">
+                📚 Petunjuk Evaluasi
+            </div>
+
+            <p>
+                Evaluasi akhir ini dilakukan setelah kamu menyelesaikan
+                pembelajaran pada Pertemuan 1, Pertemuan 2, dan Pertemuan 3.
+                Bacalah setiap soal dengan teliti dan jawablah sesuai dengan
+                pemahaman yang telah kamu peroleh selama mengikuti pembelajaran.
+            </p>
+
+        </div>
+
+
+        <!-- EVALUATION -->
+        <div class="evaluation-card">
+
+            <div class="evaluation-title">
+
+                <h2>📝 Evaluasi Akhir Pembelajaran</h2>
+
+                <p>
+                    Kerjakan evaluasi berikut dengan sungguh-sungguh.
+                    Pastikan seluruh jawaban telah diperiksa sebelum dikirim.
+                </p>
+
+            </div>
+
+
+            <!-- GOOGLE FORM -->
+            <div class="form-wrapper">
+
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfb92_9o89574HCue3ZLBMezy_-uchn18UZ4pB3xjic7VEEHw/viewform?embedded=true"
+                    title="Evaluasi Akhir FLIPTACK"
+                    loading="lazy">
+                    Memuat Evaluasi Akhir...
+                </iframe>
+
+            </div>
+
+
+            <!-- FINISH -->
+            <div class="finish">
+
+                <p>
+                    Jika kamu sudah selesai mengerjakan dan telah menekan
+                    tombol <strong>Kirim</strong> pada evaluasi, klik tombol
+                    berikut untuk menyelesaikan tahap akhir pembelajaran.
+                </p>
+
+                <button
+                    class="finish-button"
+                    onclick="selesaiEvaluasi()">
+                    ✓ Saya Sudah Selesai
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+        <a href="menu.html" class="nav-btn nav-back">
+            ← Menu Pembelajaran
+        </a>
+
+        <div class="page-label">
+            FLIPTACK
+        </div>
+
+        <a href="index.html" class="nav-btn nav-home">
+            🏠 Beranda
+        </a>
+
+    </nav>
+
+</div>
+
+
+<!-- ===== POPUP ===== -->
+<div class="popup-overlay" id="popupEvaluasi">
+
+    <div class="popup">
+
+        <div class="popup-icon">
+            🎉
+        </div>
+
+        <h2>Evaluasi Selesai!</h2>
+
+        <p>
+            Hebat! Kamu telah menyelesaikan Evaluasi Akhir
+            pembelajaran FLIPTACK.
+        </p>
+
+        <p>
+            Terima kasih sudah mengikuti seluruh rangkaian pembelajaran
+            mulai dari Pertemuan 1, Pertemuan 2, hingga Pertemuan 3.
+        </p>
+
+        <p class="popup-question">
+            ✨ Kamu telah menyelesaikan seluruh rangkaian pembelajaran!
+        </p>
+
+        <div class="popup-buttons">
+
+            <a href="menu.html" class="popup-btn popup-menu">
+                ← Menu Pembelajaran
+            </a>
+
+            <a href="index.html" class="popup-btn popup-home">
+                🏠 Kembali ke Beranda
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function selesaiEvaluasi(){
+
+    const popup = document.getElementById("popupEvaluasi");
+
+    popup.classList.add("show");
+
+    localStorage.setItem("evaluasiAkhirSelesai","true");
+}
+
+</script>
+
+</body>
+</html>
