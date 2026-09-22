@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Mengamati Video | FLIPTACK</title>
+
+
+<style>
+
+/* =====================================================
+   RESET & DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            #ffeaf4,
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            #f9d8e8,
+            transparent 45%
+        ),
+
+        #f8e8ef;
+
+    color:#4b3942;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:25px;
+}
+
+
+/* =====================================================
+   BOOK
+===================================================== */
+
+.book{
+
+    width:min(1000px,96vw);
+
+    height:min(850px,92vh);
+
+    background:#fffdfb;
+
+    border-radius:18px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 25px 60px rgba(115,65,85,.20),
+
+        0 5px 15px rgba(115,65,85,.10);
+
+    border:1px solid #efd8e1;
+
+}
+
+
+/* =====================================================
+   BOOK SPINE
+===================================================== */
+
+.book::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    left:0;
+
+    width:18px;
+
+    background:
+
+        linear-gradient(
+            to right,
+            rgba(120,80,95,.10),
+            rgba(255,255,255,0)
+        );
+
+    z-index:3;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.book-content{
+
+    height:100%;
+
+    overflow-y:auto;
+
+    padding:35px 50px 110px;
+
+    scroll-behavior:smooth;
+
+}
+
+
+.book-content::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+.book-content::-webkit-scrollbar-track{
+
+    background:#f8e9ef;
+
+}
+
+
+.book-content::-webkit-scrollbar-thumb{
+
+    background:#dca6ba;
+
+    border-radius:20px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.book-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #efdde4;
+
+}
+
+
+.brand{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:#a05d78;
+
+}
+
+
+.bookmark{
+
+    background:#f5d8e3;
+
+    color:#8e506a;
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badges{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:18px;
+
+}
+
+
+.badge{
+
+    padding:7px 13px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+
+.badge-pink{
+
+    background:#f8dbe7;
+
+    color:#92546e;
+
+}
+
+
+.badge-light{
+
+    background:#f7edf1;
+
+    color:#8b6875;
+
+}
+
+
+/* =====================================================
+   JUDUL
+===================================================== */
+
+h1{
+
+    font-family:Georgia,serif;
+
+    font-size:32px;
+
+    line-height:1.25;
+
+    color:#743f58;
+
+    margin:10px 0 10px;
+
+}
+
+
+.subtitle{
+
+    color:#806d75;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    margin:0 0 25px;
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-card{
+
+    background:#fff;
+
+    border:1px solid #ecdce3;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+
+        0 8px 22px rgba(130,75,95,.08);
+
+}
+
+
+.video-title{
+
+    font-family:Georgia,serif;
+
+    color:#80445e;
+
+    font-size:20px;
+
+    margin:0 0 14px;
+
+}
+
+
+.video-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    overflow:hidden;
+
+    border-radius:12px;
+
+    background:#f3e8ed;
+
+}
+
+
+.video-wrapper iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:0;
+
+}
+
+
+/* =====================================================
+   SECTION UMUM
+===================================================== */
+
+.section{
+
+    margin-top:25px;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:1px solid #efd9e2;
+
+}
+
+
+.section-pink{
+
+    background:#fff7fa;
+
+}
+
+
+.section-white{
+
+    background:#fff;
+
+    box-shadow:
+        0 8px 20px rgba(130,75,95,.06);
+
+}
+
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:12px;
+
+}
+
+
+.section-icon{
+
+    width:44px;
+
+    height:44px;
+
+    min-width:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f4d3df;
+
+    font-size:21px;
+
+}
+
+
+.section-title h2{
+
+    margin:0;
+
+    font-family:Georgia,serif;
+
+    font-size:23px;
+
+    color:#7d425b;
+
+}
+
+
+.section-intro{
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:#705d66;
+
+    margin:0 0 20px;
+
+}
+
+
+/* =====================================================
+   LANGKAH PENGAMATAN
+===================================================== */
+
+.step-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:11px;
+
+}
+
+
+.step-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:13px;
+
+    background:#fff;
+
+    border:1px solid #efdee5;
+
+    border-radius:13px;
+
+    padding:13px 15px;
+
+}
+
+
+.step-number{
+
+    width:29px;
+
+    height:29px;
+
+    min-width:29px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#edc6d5;
+
+    color:#81445e;
+
+    font-weight:700;
+
+    font-size:12px;
+
+}
+
+
+.step-item p{
+
+    margin:3px 0 0;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    color:#5f4d55;
+
+}
+
+
+/* =====================================================
+   KEGIATAN SETELAH PENGAMATAN
+===================================================== */
+
+.activity-box{
+
+    margin-top:20px;
+
+    background:#fff;
+
+    border:1px solid #efdee5;
+
+    border-radius:14px;
+
+    padding:18px;
+
+}
+
+
+.activity-title{
+
+    font-weight:700;
+
+    color:#81445d;
+
+    font-size:14px;
+
+    margin-bottom:14px;
+
+}
+
+
+.activity-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+
+.activity-item{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:flex-start;
+
+}
+
+
+.activity-number{
+
+    width:26px;
+
+    height:26px;
+
+    min-width:26px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f4d3df;
+
+    color:#81445e;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.activity-item p{
+
+    margin:3px 0 0;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    color:#5f4d55;
+
+}
+
+
+/* =====================================================
+   CATATAN
+===================================================== */
+
+.note{
+
+    margin-top:18px;
+
+    padding:14px 17px;
+
+    background:#f9edf2;
+
+    border-left:4px solid #d79ab1;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    color:#705c65;
+
+}
+
+
+.note strong{
+
+    color:#82445e;
+
+}
+
+
+/* =====================================================
+   PERTANYAAN PEMANTIK
+===================================================== */
+
+.question-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:11px;
+
+}
+
+
+.question-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    background:#fff;
+
+    border:1px solid #efdee5;
+
+    border-radius:12px;
+
+    padding:13px 15px;
+
+}
+
+
+.question-number{
+
+    width:29px;
+
+    height:29px;
+
+    min-width:29px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#efc9d7;
+
+    color:#81445e;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.question-item p{
+
+    margin:3px 0 0;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    color:#5f4d55;
+
+}
+
+
+/* =====================================================
+   PREDIKSI
+===================================================== */
+
+.prediction-wrapper{
+
+    overflow-x:auto;
+
+    margin-top:20px;
+
+}
+
+
+.prediction-table{
+
+    width:100%;
+
+    min-width:680px;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+    border:1px solid #e8bccc;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+
+.prediction-table th{
+
+    background:#f6d9e3;
+
+    color:#713d55;
+
+    font-size:13px;
+
+    padding:12px 10px;
+
+    border:1px solid #e6b9ca;
+
+    text-align:center;
+
+}
+
+
+.prediction-table td{
+
+    border:1px solid #ecc8d5;
+
+    padding:10px;
+
+    vertical-align:top;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    color:#5f4d55;
+
+}
+
+
+.prediction-table td:first-child{
+
+    width:45px;
+
+    text-align:center;
+
+    font-weight:700;
+
+}
+
+
+.prediction-question{
+
+    min-width:260px;
+
+}
+
+
+.prediction-input{
+
+    width:100%;
+
+    min-height:65px;
+
+    border:1px dashed #dca6ba;
+
+    border-radius:8px;
+
+    padding:9px;
+
+    resize:vertical;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    color:#5f4d55;
+
+    background:#fffafb;
+
+    outline:none;
+
+}
+
+
+.prediction-input:focus{
+
+    border-color:#c77998;
+
+    box-shadow:0 0 0 2px rgba(199,121,152,.10);
+
+}
+
+
+.prediction-input::placeholder{
+
+    color:#b69aa5;
+
+}
+
+
+/* =====================================================
+   APA YANG INGIN KAMU KETAHUI
+===================================================== */
+
+.know-box{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    background:#fff7fa;
+
+    border:1px solid #efd9e2;
+
+    border-radius:15px;
+
+}
+
+
+.know-instruction{
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    color:#66545c;
+
+    margin:0 0 15px;
+
+}
+
+
+.question-input-row{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    margin-bottom:12px;
+
+}
+
+
+.question-input-number{
+
+    width:30px;
+
+    height:30px;
+
+    min-width:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#efc9d7;
+
+    color:#81445e;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.question-input{
+
+    flex:1;
+
+    min-height:55px;
+
+    resize:vertical;
+
+    border:1px dashed #dca6ba;
+
+    border-radius:9px;
+
+    padding:10px 12px;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    color:#5f4d55;
+
+    background:#fff;
+
+    outline:none;
+
+}
+
+
+.question-input:focus{
+
+    border-color:#c77998;
+
+    box-shadow:0 0 0 2px rgba(199,121,152,.10);
+
+}
+
+
+.question-input::placeholder{
+
+    color:#b69aa5;
+
+}
+
+
+/* =====================================================
+   FOOTER NOTE
+===================================================== */
+
+.page-note{
+
+    margin-top:25px;
+
+    padding:17px 20px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    color:#806c75;
+
+    background:#f9edf2;
+
+    border-radius:12px;
+
+}
+
+
+.page-note strong{
+
+    color:#82445e;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.book-navigation{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:75px;
+
+    background:
+
+        rgba(255,253,251,.96);
+
+    backdrop-filter:blur(10px);
+
+    border-top:1px solid #ead9e0;
+
+    display:grid;
+
+    grid-template-columns:1fr auto 1fr;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    z-index:10;
+
+}
+
+
+.nav-button{
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:10px 17px;
+
+    border-radius:25px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+}
+
+
+.nav-prev{
+
+    justify-self:start;
+
+    background:#f7e6ed;
+
+    color:#82455e;
+
+}
+
+
+.nav-next{
+
+    justify-self:end;
+
+    background:#dca5ba;
+
+    color:#fff;
+
+}
+
+
+.nav-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 5px 12px rgba(130,75,95,.15);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px){
+
+    body{
+
+        padding:10px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .book{
+
+        width:100%;
+
+        height:calc(100vh - 20px);
+
+        border-radius:14px;
+
+    }
+
+
+    .book-content{
+
+        padding:25px 20px 100px;
+
+    }
+
+
+    .book-header{
+
+        margin-bottom:20px;
+
+    }
+
+
+    .brand{
+
+        font-size:9px;
+
+        letter-spacing:1.2px;
+
+    }
+
+
+    .bookmark{
+
+        font-size:8px;
+
+        padding:6px 9px;
+
+    }
+
+
+    h1{
+
+        font-size:25px;
+
+    }
+
+
+    .subtitle{
+
+        font-size:13px;
+
+    }
+
+
+    .video-card{
+
+        padding:12px;
+
+    }
+
+
+    .video-title{
+
+        font-size:18px;
+
+    }
+
+
+    .section{
+
+        padding:18px;
+
+    }
+
+
+    .section-title h2{
+
+        font-size:20px;
+
+    }
+
+
+    .section-intro{
+
+        font-size:13px;
+
+    }
+
+
+    .question-item{
+
+        padding:12px;
+
+    }
+
+
+    .prediction-wrapper{
+
+        margin-left:-5px;
+
+        margin-right:-5px;
+
+    }
+
+
+    .book-navigation{
+
+        height:68px;
+
+        padding:0 12px;
+
+    }
+
+
+    .nav-button{
+
+        padding:9px 11px;
+
+        font-size:10px;
+
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .book-content{
+
+        padding-left:15px;
+
+        padding-right:15px;
+
+    }
+
+
+    .bookmark{
+
+        display:none;
+
+    }
+
+
+    .section{
+
+        padding:15px;
+
+    }
+
+
+    .section-title{
+
+        gap:9px;
+
+    }
+
+
+    .section-icon{
+
+        width:38px;
+
+        height:38px;
+
+        min-width:38px;
+
+        font-size:18px;
+
+    }
+
+
+    .section-title h2{
+
+        font-size:18px;
+
+    }
+
+
+    .step-item{
+
+        padding:11px;
+
+    }
+
+
+    .question-item{
+
+        padding:11px;
+
+    }
+
+
+    .question-number{
+
+        width:27px;
+
+        height:27px;
+
+        min-width:27px;
+
+    }
+
+
+    .question-input-row{
+
+        gap:9px;
+
+    }
+
+
+    .nav-button{
+
+        padding:8px 9px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="book">
+
+
+<div class="book-content">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="book-header">
+
+    <div class="brand">
+        FLIPTACK • E-MODUL BERBASIS TPACK
+    </div>
+
+    <div class="bookmark">
+        SISTEM PERNAPASAN MANUSIA
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BADGES
+===================================================== -->
+
+<div class="badges">
+
+    <div class="badge badge-pink">
+        PERTEMUAN 2
+    </div>
+
+    <div class="badge badge-light">
+        FASE 1 • CONTEXTUAL SCIENTIFIC EXPLORATION
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JUDUL
+===================================================== -->
+
+<h1>
+    Ayo Mengamati, Bagaimana Kita Bernapas?
+</h1>
+
+
+<p class="subtitle">
+
+    Saksikan video berikut dengan saksama.
+    Setelah itu, lakukan pengamatan sederhana untuk mengetahui
+    apa yang terjadi pada tubuh kita ketika bernapas dan
+    setelah melakukan aktivitas.
+
+</p>
+
+
+<!-- =====================================================
+     VIDEO
+===================================================== -->
+
+<div class="video-card">
+
+    <h2 class="video-title">
+        🎥 Video: Bagaimana Kita Bernapas?
+    </h2>
+
+
+    <div class="video-wrapper">
+
+        <iframe
+            src="https://drive.google.com/file/d/1B5H-ESwU481TOV3BdfMmwEk1GVhG8dAj/preview"
+            allow="autoplay">
+        </iframe>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PENGAMATAN SEDERHANA
+===================================================== -->
+
+<section class="section section-pink">
+
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            🔎
+        </div>
+
+        <h2>
+            Sekarang Lakukan Pengamatan Sederhana!
+        </h2>
+
+    </div>
+
+
+    <p class="section-intro">
+
+        Setelah menonton video, lakukan kegiatan berikut
+        untuk mengamati perubahan yang terjadi pada tubuhmu
+        saat menarik dan menghembuskan napas.
+
+    </p>
+
+
+    <div class="step-list">
+
+
+        <div class="step-item">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <p>
+                Letakkan salah satu tanganmu di dada.
+            </p>
+
+        </div>
+
+
+        <div class="step-item">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <p>
+                Tarik napas perlahan melalui hidung.
+            </p>
+
+        </div>
+
+
+        <div class="step-item">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <p>
+                Rasakan apa yang terjadi pada dadamu.
+            </p>
+
+        </div>
+
+
+        <div class="step-item">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <p>
+                Hembuskan napas secara perlahan.
+            </p>
+
+        </div>
+
+
+        <div class="step-item">
+
+            <div class="step-number">
+                5
+            </div>
+
+            <p>
+                Rasakan kembali perubahan yang terjadi.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         AKTIVITAS SETELAH PENGAMATAN
+    ================================================= -->
+
+    <div class="activity-box">
+
+
+        <div class="activity-title">
+            🏃 Selanjutnya, Lakukan Kegiatan Berikut!
+        </div>
+
+
+        <div class="activity-list">
+
+
+            <div class="activity-item">
+
+                <div class="activity-number">
+                    1
+                </div>
+
+                <p>
+                    Berjalan cepat atau berlari kecil selama ±1 menit.
+                </p>
+
+            </div>
+
+
+            <div class="activity-item">
+
+                <div class="activity-number">
+                    2
+                </div>
+
+                <p>
+                    Rasakan kembali perubahan napasmu.
+                </p>
+
+            </div>
+
+
+            <div class="activity-item">
+
+                <div class="activity-number">
+                    3
+                </div>
+
+                <p>
+                    Bandingkan dengan saat kamu sedang duduk diam.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="note">
+
+        <strong>💡 Ingat!</strong>
+        Lakukan kegiatan dengan aman dan sesuai kemampuanmu.
+        Jika merasa tidak nyaman, segera berhenti dan beristirahat.
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     PERTANYAAN PEMANTIK
+===================================================== -->
+
+<section class="section section-white">
+
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            ❓
+        </div>
+
+        <h2>
+            Pertanyaan Pemantik
+        </h2>
+
+    </div>
+
+
+    <p class="section-intro">
+
+        Setelah mengamati video dan melakukan kegiatan di atas,
+        coba pikirkan jawaban dari pertanyaan berikut.
+
+    </p>
+
+
+    <div class="question-list">
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                1
+            </div>
+
+            <p>
+                Mengapa dada mengembang saat menarik napas?
+            </p>
+
+        </div>
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                2
+            </div>
+
+            <p>
+                Mengapa dada mengecil saat menghembuskan napas?
+            </p>
+
+        </div>
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                3
+            </div>
+
+            <p>
+                Mengapa napas menjadi lebih cepat setelah berlari?
+            </p>
+
+        </div>
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                4
+            </div>
+
+            <p>
+                Organ tubuh apa saja yang bekerja ketika kita bernapas?
+            </p>
+
+        </div>
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                5
+            </div>
+
+            <p>
+                Menurutmu, ke mana udara yang kita hirup setelah masuk melalui hidung?
+            </p>
+
+        </div>
+
+
+        <div class="question-item">
+
+            <div class="question-number">
+                6
+            </div>
+
+            <p>
+                Mengapa manusia tidak dapat hidup tanpa bernapas?
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     TULISKAN DUGAAN
+===================================================== -->
+
+<section class="section section-pink">
+
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            💭
+        </div>
+
+        <h2>
+            Tuliskan Dugaanmu (Prediksi)
+        </h2>
+
+    </div>
+
+
+    <p class="section-intro">
+
+        Sebelum mempelajari materi lebih lanjut,
+        tuliskan dugaanmu berdasarkan hasil pengamatan
+        yang telah kamu lakukan.
+
+    </p>
+
+
+    <div class="prediction-wrapper">
+
+
+        <table class="prediction-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        No
+                    </th>
+
+                    <th>
+                        Pertanyaan
+                    </th>
+
+                    <th>
+                        Dugaan Saya
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td>
+                        1
+                    </td>
+
+                    <td class="prediction-question">
+                        Mengapa dada mengembang saat menarik napas?
+                    </td>
+
+                    <td>
+
+                        <textarea
+                            class="prediction-input"
+                            placeholder="Tuliskan dugaanmu di sini...">
+                        </textarea>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        2
+                    </td>
+
+                    <td class="prediction-question">
+                        Mengapa dada mengecil saat menghembuskan napas?
+                    </td>
+
+                    <td>
+
+                        <textarea
+                            class="prediction-input"
+                            placeholder="Tuliskan dugaanmu di sini...">
+                        </textarea>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        3
+                    </td>
+
+                    <td class="prediction-question">
+                        Mengapa napas lebih cepat setelah berlari?
+                    </td>
+
+                    <td>
+
+                        <textarea
+                            class="prediction-input"
+                            placeholder="Tuliskan dugaanmu di sini...">
+                        </textarea>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        4
+                    </td>
+
+                    <td class="prediction-question">
+                        Organ apa saja yang berperan dalam pernapasan?
+                    </td>
+
+                    <td>
+
+                        <textarea
+                            class="prediction-input"
+                            placeholder="Tuliskan dugaanmu di sini...">
+                        </textarea>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+    <div class="note">
+
+        <strong>💡 Tidak apa-apa jika dugaanmu belum tepat.</strong>
+        Tuliskan berdasarkan apa yang kamu pikirkan saat ini.
+        Setelah mempelajari materi, kamu dapat mengetahui
+        apakah dugaanmu benar atau perlu diperbaiki.
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     APA YANG INGIN KAMU KETAHUI
+===================================================== -->
+
+<section class="section section-white">
+
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            💬
+        </div>
+
+        <h2>
+            Apa yang Ingin Kamu Ketahui?
+        </h2>
+
+    </div>
+
+
+    <div class="know-box">
+
+
+        <p class="know-instruction">
+
+            Tuliskan minimal <strong>dua pertanyaan</strong>
+            yang muncul setelah kamu mengamati video
+            dan melakukan kegiatan tadi.
+
+        </p>
+
+
+        <!-- PERTANYAAN 1 -->
+
+        <div class="question-input-row">
+
+            <div class="question-input-number">
+                1
+            </div>
+
+            <textarea
+                class="question-input"
+                placeholder="Tuliskan pertanyaanmu di sini...">
+            </textarea>
+
+        </div>
+
+
+        <!-- PERTANYAAN 2 -->
+
+        <div class="question-input-row">
+
+            <div class="question-input-number">
+                2
+            </div>
+
+            <textarea
+                class="question-input"
+                placeholder="Tuliskan pertanyaanmu di sini...">
+            </textarea>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER NOTE
+===================================================== -->
+
+<div class="page-note">
+
+    Setelah selesai melakukan pengamatan, menjawab pertanyaan,
+    dan menuliskan dugaanmu, lanjutkan ke
+    <strong>
+        Materi Pembelajaran.
+    </strong>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="book-navigation">
+
+
+    <a
+        href="kegiatanbelajar2.html"
+        class="nav-button nav-prev">
+
+        ← Kembali
+
+    </a>
+
+<a>
+</a>   
+ <a
+        href="materi-p2.html"
+        class="nav-button nav-next">
+
+        Materi Pembelajaran →
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>
